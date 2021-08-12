@@ -104,8 +104,5 @@ app.use((req, res) => {
 });
 
 
-server.listen(80);
-httpsServer.listen(443);
+server.listen(process.env.PORT);
 
-
-console.log('Holy Unblocker is listening on port 8080. This is simply a public for Holy Unblocker. Certain functions may not work properly.');
