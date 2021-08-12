@@ -6,3 +6,4 @@ http.createServer((req, res) =>
 ).on('upgrade', (req, socket, head) => 
   proxy.upgrade(req, socket, head) // WebSocket Proxy
 ).listen(8080);
+console.log("running")
