@@ -6,7 +6,7 @@ const ssl = {
     cert: fs.readFileSync(path.join(__dirname, 'demo/ssl.cert')),
 };
 const server = https.createServer(ssl);
-const Corrosion = require('../');
+const Corrosion = require('corrosion');
 const proxy = new Corrosion({
     codec: 'xor',
 });
