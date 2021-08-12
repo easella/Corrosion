@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "npm i corrosion",
-    "start": "node demo/index.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
