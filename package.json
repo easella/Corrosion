@@ -14,7 +14,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "install": "npm i corrosion",
+    "start": "npm i corrosion",
     "start": "node app.js"
   },
   "author": "",
