@@ -1,4 +1,4 @@
-const Corrosion = require('corrosion');
+const corrosion = require('corrosion');
 const proxy = new corrosion({
     prefix: '/service/',
     title: 'Untitled Document',
