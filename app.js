@@ -1,20 +1,19 @@
-const corrosion = require('corrosion');
-const proxy = new corrosion({
-    prefix: '/service/',
-    title: 'Untitled Document',
-    ws: true,
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
+const ssl = {
+    key: fs.readFileSync(path.join(__dirname, 'demo/ssl.key')),
+    cert: fs.readFileSync(path.join(__dirname, 'demo/ssl.cert')),
+};
+const server = https.createServer(ssl);
+const Corrosion = require('../');
+const proxy = new Corrosion({
     codec: 'xor',
-    requestMiddleware: [
-        corrosion.middleware.blacklist([
-            'accounts.google.com',
-        ], 'Page is blocked'),
-    ],
 });
 
-const http = require('http')
-http.createServer((req, res) => 
-  proxy.request(req, res) // Request Proxy
-).on('upgrade', (req, socket, head) => 
-  proxy.upgrade(req, socket, head) // WebSocket Proxy
-).listen(process.env.PORT);
-console.log("running")
+proxy.bundleScripts();
+
+server.on('request', (request, response) => {
+    if (request.url.startsWith(proxy.prefix)) return proxy.request(request, response);
+    response.end(fs.readFileSync('/index.html', 'utf-8'));
+}).on('upgrade', (clientRequest, clientSocket, clientHead) => proxy.upgrade(clientRequest, clientSocket, clientHead)).listen(process.env.PORT);
