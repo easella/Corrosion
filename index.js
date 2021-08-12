@@ -5,4 +5,4 @@ http.createServer((req, res) =>
   proxy.request(req, res) // Request Proxy
 ).on('upgrade', (req, socket, head) => 
   proxy.upgrade(req, socket, head) // WebSocket Proxy
-).listen(80);
+).listen(8080);
