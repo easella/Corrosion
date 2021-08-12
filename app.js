@@ -1,4 +1,4 @@
-const Corrosion = require('corrosion');
+const Corrosion = require('Corrosion');
 const proxy = new Corrosion();
 const http = require('http')
 http.createServer((req, res) => 
